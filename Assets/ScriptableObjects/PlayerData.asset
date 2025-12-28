@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6faee2b9516e1d84580689289f6eafe8, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: Assembly-CSharp::PlayerData
-  jumpSpeed: 8
-  climbJumpSpeed: 5
+  jumpSpeed: 10
+  climbJumpSpeed: 8
   coyoteWindow: 0.15
   groundRadius: 0.5
   fallAnimSpeed: 30

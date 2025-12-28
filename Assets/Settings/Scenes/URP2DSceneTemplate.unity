@@ -49411,6 +49411,37 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
+--- !u!1 &333475855
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 333475856}
+  m_Layer: 0
+  m_Name: AutoJump
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &333475856
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 333475855}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.753, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1936426082}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &346330096
 GameObject:
   m_ObjectHideFlags: 0
@@ -49771,7 +49802,7 @@ Transform:
   m_GameObject: {fileID: 1024375030}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.876, z: 0}
+  m_LocalPosition: {x: 0, y: 0.375, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -49805,7 +49836,7 @@ Transform:
   m_GameObject: {fileID: 1402228130}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.41, y: -9.96, z: 0}
+  m_LocalPosition: {x: 49.26, y: -13.12, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -49828,7 +49859,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 2
+  m_GravityScale: 3
   m_Material: {fileID: 6200000, guid: 687a7d41fc757cf4f8d36a1d88a9b656, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
@@ -49897,6 +49928,7 @@ MonoBehaviour:
     m_Bits: 64
   pies: {fileID: 1412340571}
   delante: {fileID: 1024375031}
+  autojump: {fileID: 333475856}
   animator: {fileID: 346330099}
   playerData: {fileID: 11400000, guid: 796034ab267c0064d9bead7d1583db74, type: 2}
   spRend: {fileID: 346330098}
@@ -50117,6 +50149,7 @@ Transform:
   m_Children:
   - {fileID: 1412340571}
   - {fileID: 1024375031}
+  - {fileID: 333475856}
   m_Father: {fileID: 1402228131}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807

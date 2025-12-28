@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("REFERENCIAS")]
     public LayerMask sueloMask;
-    public Transform pies, delante;
+    public Transform pies, delante, autojump;
     public Animator animator;
     public PlayerData playerData;
     public SpriteRenderer spRend;
@@ -86,10 +86,11 @@ public class PlayerMovement : MonoBehaviour
         //Si está agotado, no puede escalar
         if (tired) puedeEscalar = false;
 
+        Debug.DrawRay(autojump.position, autojump.right, Color.green);
         if (!puedeEscalar)
             escalar = false;
         //Si está escalando y va a llegar al borde, se le da un último impulso al jugador
-        else if (!Physics2D.Raycast(transform.position, delante.right, playerData.wallRadius, sueloMask) && escalar)
+        else if (!Physics2D.Raycast(autojump.position, autojump.right, playerData.wallRadius, sueloMask) && escalar)
         {
             DarSalto(true);
         }
@@ -118,17 +119,19 @@ public class PlayerMovement : MonoBehaviour
         //Se puede saltar si se está en el suelo o agarrado a una pared
         if (isGrounded || escalar)
         {
-            rb2d.linearVelocity = new Vector2(rb2d.linearVelocity.x, rb2d.linearVelocity.y + currentJumpSpeed);
-            //animator.SetTrigger("Salto");
+            animator.SetBool("isClimbing", false);
+            animator.SetTrigger("jump");
             if (escalar) currentStamina -= playerData.jumpStamina;  //Solo se consume estamina si es salto desde escalada
             escalar = false;    //Al saltar se desactiva la escalada
+            rb2d.linearVelocity = new Vector2(rb2d.linearVelocity.x, rb2d.linearVelocity.y + currentJumpSpeed);
         }
         else if (jumpDelay < playerData.coyoteWindow)
         {
-            rb2d.linearVelocity = new Vector2(rb2d.linearVelocity.x, rb2d.linearVelocity.y + currentJumpSpeed);
-            //animator.SetTrigger("Salto");
+            animator.SetBool("isClimbing", false);
+            animator.SetTrigger("jump");
             if (escalar) currentStamina -= playerData.jumpStamina;
             escalar = false;
+            rb2d.linearVelocity = new Vector2(rb2d.linearVelocity.x, rb2d.linearVelocity.y + currentJumpSpeed);
         }
 
         currentJumpSpeed = playerData.jumpSpeed;
@@ -140,7 +143,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (!escalar)
         {
-            //animator.SetBool("Escalando", false);
+            animator.SetBool("isClimbing", false);
             if (movDir != Vector2.zero && isGrounded)
                 animator.SetBool("isWalking", true);
             else
@@ -148,8 +151,8 @@ public class PlayerMovement : MonoBehaviour
 
             if (movDir.x < 0f)
             {
-                //delante.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
-                //delante2.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
+                delante.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
+                autojump.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
                 //sprRendHead.flipX = true;
                 //posicionesGOs.localScale = Vector3.one;
                 spRend.flipX = true;
@@ -157,8 +160,8 @@ public class PlayerMovement : MonoBehaviour
 
             if (movDir.x > 0f)
             {
-                //delante.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
-                //delante2.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
+                delante.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
+                autojump.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
                 //sprRendHead.flipX = false;
                 //posicionesGOs.localScale = new Vector3(-1, 1, 1);
                 spRend.flipX = false;
@@ -167,7 +170,7 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             movDir.x = 0;
-            //animator.SetBool("Escalando", true);
+            animator.SetBool("isClimbing", true);
         }
 
     }
@@ -178,7 +181,11 @@ public class PlayerMovement : MonoBehaviour
         {
             float climbDelay = Time.time - lastTimeCanClimb;
             if (puedeEscalar || climbDelay < playerData.climbCoyoteWindow)
+            {
                 escalar = true;
+                animator.SetBool("isClimbing", true);
+            }
+                
         }
     }
 
