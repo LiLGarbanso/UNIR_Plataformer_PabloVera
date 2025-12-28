@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -7,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rb2d;
     private Vector2 movDir;
-    private bool isGrounded, wasGrounded, escalar, puedeEscalar, tired;
+    private bool isGrounded, wasGrounded, escalar, puedeEscalar, tired, canMove;
     private float lastTimeGrounded, lastVerticalVelocity, currentJumpSpeed, lastTimeCanClimb;
     public float currentStamina, currentEnergy, maxStamina;
 
@@ -28,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
         maxStamina = playerData.maxInitStamina;
         currentStamina = maxStamina;
         currentEnergy = playerData.maxEnergy;
+        canMove = true;
     }
 
     public void ResetPlayer()
@@ -39,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!canMove) return;
         //La estamina máxima depende proporcionalmente a la energía actual
         //La energía va decreciendo por el hambre
         //Cuando la energía llega a 0, el jugador muere
@@ -53,7 +56,6 @@ public class PlayerMovement : MonoBehaviour
             rb2d.linearVelocity = new Vector2(movDir.x * playerData.movSpeed, movDir.y * playerData.climbSpeed);
         else
             rb2d.linearVelocity = new Vector2(movDir.x * playerData.movSpeed, rb2d.linearVelocity.y);
-
 
         //// Comprobación de suelo
         isGrounded = Physics2D.Raycast(pies.position, -(Vector2)transform.up, playerData.groundRadius, sueloMask);
@@ -228,5 +230,18 @@ public class PlayerMovement : MonoBehaviour
         EventBus.MuerteJugador();
         //ResetPlayer();
         //gameObject.SetActive(false);
+    }
+
+    public void Stunear(float s)
+    {
+        StartCoroutine(Stun(s));
+    }
+
+    IEnumerator Stun(float segundos)
+    {
+        canMove = false;
+        yield return new WaitForSeconds(segundos);
+        canMove = true;
+        yield return null;
     }
 }
