@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6faee2b9516e1d84580689289f6eafe8, type: 3}
+  m_Name: PlayerData
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerData
+  jumpSpeed: 8
+  climbJumpSpeed: 5
+  coyoteWindow: 0.15
+  groundRadius: 0.5
+  fallAnimSpeed: 30
+  movSpeed: 5
+  wallRadius: 0.5
+  climbSpeed: 4
+  fallDeathSpeed: 50
+  grabStamina: 1
+  climbStamina: 3
+  jumpStamina: 5
+  restStaminaSpeed: 3
+  umbralRecuperacion: 10
+  climbCoyoteWindow: 0.2
+  hambreSpeed: 0.1
+  maxInitStamina: 20
+  maxEnergy: 100
+  SFX_Muerte: {fileID: 0}
