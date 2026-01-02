@@ -19,6 +19,9 @@ public class PlayerMovement : MonoBehaviour
     public PlayerData playerData;
     public SpriteRenderer spRend;
 
+    [Header("DEBUG")]
+    public bool debug;
+
     private void Awake()
     {
         wasGrounded = false;
@@ -193,17 +196,21 @@ public class PlayerMovement : MonoBehaviour
 
     public void CalcularGasoEstamina()
     {
-        if (currentStamina < 0)
-            tired = true;
-        else
+        if (!debug)
         {
-            //Gasto pasivo de estamina por estar escalando
-            currentStamina -= playerData.grabStamina * Time.deltaTime;
+            if (currentStamina < 0)
+                tired = true;
+            else
+            {
+                //Gasto pasivo de estamina por estar escalando
+                currentStamina -= playerData.grabStamina * Time.deltaTime;
 
-            //Gasto extra por escalar hacia arriba
-            if (movDir.y > 0f)
-                currentStamina -= playerData.climbStamina * Time.deltaTime;
+                //Gasto extra por escalar hacia arriba
+                if (movDir.y > 0f)
+                    currentStamina -= playerData.climbStamina * Time.deltaTime;
+            }
         }
+        
     }
 
     private void RecuperarEstamina()
