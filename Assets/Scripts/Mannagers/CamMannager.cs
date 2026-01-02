@@ -45,6 +45,8 @@ public class CamMannager : MonoBehaviour
                     trigger.size = new Vector2(worldSize.x / trigger.transform.lossyScale.x, worldSize.y / trigger.transform.lossyScale.y);
                     Vector2 worldCenter = point.bounds.center;
                     trigger.offset = trigger.transform.InverseTransformPoint(worldCenter);
+
+                    if (point.gameObject.TryGetComponent<SpriteRenderer>(out var spriteRenderer)) spriteRenderer.enabled = false;
                 }
             }
         }

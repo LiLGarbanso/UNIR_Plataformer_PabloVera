@@ -20,4 +20,5 @@ public class PlayerData : ScriptableObject
 
     [Header("SFX")]
     public AudioClip SFX_Muerte;
+    public AudioClip SFX_Paso, SFX_Salto, SFX_Escalar;
 }

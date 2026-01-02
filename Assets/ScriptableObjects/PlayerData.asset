@@ -30,4 +30,7 @@ MonoBehaviour:
   hambreSpeed: 0.1
   maxInitStamina: 20
   maxEnergy: 100
-  SFX_Muerte: {fileID: 0}
+  SFX_Muerte: {fileID: 8300000, guid: 7d665f262def6d64e8e2c43c090ed248, type: 3}
+  SFX_Paso: {fileID: 8300000, guid: 1994d969c77d82e4ba0ad9e9b7ab7f93, type: 3}
+  SFX_Salto: {fileID: 8300000, guid: 3635a549b580e0e4c9d5dd0e79462bf2, type: 3}
+  SFX_Escalar: {fileID: 8300000, guid: 7c853a5cb3f543743b9d5c5adcf2ba5e, type: 3}
