@@ -16,11 +16,11 @@ MonoBehaviour:
   climbJumpSpeed: 8
   coyoteWindow: 0.15
   groundRadius: 0.5
-  fallAnimSpeed: 30
+  fallAnimSpeed: -15
   movSpeed: 5
   wallRadius: 0.5
   climbSpeed: 4
-  fallDeathSpeed: 100
+  fallDeathSpeed: -25
   grabStamina: 1
   climbStamina: 3
   jumpStamina: 5
@@ -34,3 +34,5 @@ MonoBehaviour:
   SFX_Paso: {fileID: 8300000, guid: 1994d969c77d82e4ba0ad9e9b7ab7f93, type: 3}
   SFX_Salto: {fileID: 8300000, guid: 3635a549b580e0e4c9d5dd0e79462bf2, type: 3}
   SFX_Escalar: {fileID: 8300000, guid: 7c853a5cb3f543743b9d5c5adcf2ba5e, type: 3}
+  SFX_Caer: {fileID: 8300000, guid: b95a23e49bfdace4d97f104c1bde35fc, type: 3}
+  SFX_Autojump: {fileID: 8300000, guid: eafcf1da058959f40bf7c5e26d61a9dc, type: 3}

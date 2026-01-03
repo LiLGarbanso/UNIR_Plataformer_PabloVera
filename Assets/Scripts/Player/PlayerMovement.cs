@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rb2d;
     private Vector2 movDir;
-    private bool isGrounded, wasGrounded, escalar, puedeEscalar, tired, canMove;
+    private bool isGrounded, wasGrounded, escalar, puedeEscalar, tired, canMove, hasJump;
     private float lastTimeGrounded, lastVerticalVelocity, currentJumpSpeed, lastTimeCanClimb;
     public float currentStamina, currentEnergy, maxStamina;
 
@@ -33,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
         currentStamina = maxStamina;
         currentEnergy = playerData.maxEnergy;
         canMove = true;
+        hasJump = false;
     }
 
     public void ResetPlayer()
@@ -48,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
         //La estamina máxima depende proporcionalmente a la energía actual
         //La energía va decreciendo por el hambre
         //Cuando la energía llega a 0, el jugador muere
-        currentEnergy -= playerData.hambreSpeed * Time.deltaTime;
+        currentEnergy -= playerData.hambreSpeed * Time.fixedDeltaTime;
         if (currentEnergy < 0)
             Die();
 
@@ -67,17 +68,21 @@ public class PlayerMovement : MonoBehaviour
         //Guardar el último momento en el suelo para el coyote jump. Puede servir también para el jump buffer
         if (isGrounded)
         {
+            hasJump = false;
             lastTimeGrounded = Time.time;
             RecuperarEstamina();    //Solo se recuera estamina al estar en el suelo
             if (!wasGrounded)
             {
 
+                if(debug)
+                    Debug.Log("Land Velocity: " + lastVerticalVelocity);
                 if (lastVerticalVelocity < playerData.fallDeathSpeed)   //Daño por caída
                     Die();
-                else if (lastVerticalVelocity < playerData.fallAnimSpeed)
+                else //if (lastVerticalVelocity < playerData.fallAnimSpeed)
                 {
                     //animator.SetTrigger("Caida");
                     //retener al jugador un segundo
+                    SoundMannager.Instance.PlaySFX(playerData.SFX_Caer);
                 }
             }
         }
@@ -104,7 +109,9 @@ public class PlayerMovement : MonoBehaviour
             lastTimeCanClimb = Time.time;
 
         wasGrounded = isGrounded;
-        lastVerticalVelocity = rb2d.linearVelocity.y;
+
+        if(!isGrounded)
+            lastVerticalVelocity = rb2d.linearVelocity.y;   //Guardamos la última velocidad solo si aún estamos en el aire
     }
 
     public void Saltar(InputAction.CallbackContext context)
@@ -115,7 +122,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void DarSalto(bool climbJump = false)
     {
-        if (tired) return;  //Sonido de agotado
+        if (tired || hasJump) return;  //Sonido de agotado
         //Si el salto se ejecuta en la escalada, es menos potente
         if (climbJump || escalar)   //Si es un salto en escalada o el autojump al llegar a un borde
             currentJumpSpeed = playerData.climbJumpSpeed;
@@ -129,6 +136,11 @@ public class PlayerMovement : MonoBehaviour
             if (escalar) currentStamina -= playerData.jumpStamina;  //Solo se consume estamina si es salto desde escalada
             escalar = false;    //Al saltar se desactiva la escalada
             rb2d.linearVelocity = new Vector2(rb2d.linearVelocity.x, rb2d.linearVelocity.y + currentJumpSpeed);
+            if (climbJump)
+                SoundMannager.Instance.PlaySFX(playerData.SFX_Autojump);
+            else
+                SoundMannager.Instance.PlaySFX(playerData.SFX_Salto);
+            hasJump = true;
         }
         else if (jumpDelay < playerData.coyoteWindow)
         {
@@ -137,6 +149,11 @@ public class PlayerMovement : MonoBehaviour
             if (escalar) currentStamina -= playerData.jumpStamina;
             escalar = false;
             rb2d.linearVelocity = new Vector2(rb2d.linearVelocity.x, rb2d.linearVelocity.y + currentJumpSpeed);
+            if (climbJump)
+                SoundMannager.Instance.PlaySFX(playerData.SFX_Autojump);
+            else
+                SoundMannager.Instance.PlaySFX(playerData.SFX_Salto);
+            hasJump = true;
         }
 
         currentJumpSpeed = playerData.jumpSpeed;
@@ -189,6 +206,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 escalar = true;
                 animator.SetBool("isClimbing", true);
+                hasJump = false;
             }
                 
         }
