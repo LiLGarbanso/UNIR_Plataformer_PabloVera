@@ -16,7 +16,7 @@ public class PlayerData : ScriptableObject
 
     [Header("PÁRAMETROS HAMBRE")]
     public float hambreSpeed;
-    public float maxInitStamina, maxEnergy = 100f;
+    public float maxInitStamina = 20f, maxEnergy = 100f;
 
     [Header("SFX")]
     public AudioClip SFX_Muerte;
