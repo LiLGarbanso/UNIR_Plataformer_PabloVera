@@ -86,7 +86,6 @@ public class PlayerMovement : MonoBehaviour
                 else if (lastVerticalVelocity < playerData.fallDmgSpeed)
                 {
                     liveSystem.TakeDamage(1);
-                    animator.SetTrigger("estamparse");
                     Stunear(2f);
                 }
                 else
@@ -268,6 +267,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Stunear(float s)
     {
+        animator.SetTrigger("estamparse");
         StartCoroutine(Stun(s));
     }
 
