@@ -33,7 +33,7 @@ public class SoundMannager : MonoBehaviour
 
     public void Inicio()
     {
-        PlayAmbience(musicaAmbiente, true);
+        if (musicaAmbiente != null) PlayAmbience(musicaAmbiente, true);
     }
 
     public void PlayMusic(AudioClip clip, bool loop = true)

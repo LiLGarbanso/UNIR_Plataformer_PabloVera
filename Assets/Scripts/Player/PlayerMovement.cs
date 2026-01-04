@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isGrounded, wasGrounded, escalar, puedeEscalar, tired, canMove, hasJump;
     private float lastTimeGrounded, lastVerticalVelocity, currentJumpSpeed, lastTimeCanClimb;
     public float currentStamina, currentEnergy, maxStamina;
+    private HasLives liveSystem;
 
     [Header("REFERENCIAS")]
     public LayerMask sueloMask;
@@ -34,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
         currentEnergy = playerData.maxEnergy;
         canMove = true;
         hasJump = false;
+        liveSystem = GetComponent<HasLives>();
     }
 
     public void ResetPlayer()
@@ -77,11 +79,18 @@ public class PlayerMovement : MonoBehaviour
                 if(debug)
                     Debug.Log("Land Velocity: " + lastVerticalVelocity);
                 if (lastVerticalVelocity < playerData.fallDeathSpeed)   //Daño por caída
-                    Die();
-                else //if (lastVerticalVelocity < playerData.fallAnimSpeed)
                 {
-                    //animator.SetTrigger("Caida");
-                    //retener al jugador un segundo
+                    liveSystem.Die();
+                    //Animación muerte
+                }
+                else if (lastVerticalVelocity < playerData.fallDmgSpeed)
+                {
+                    liveSystem.TakeDamage(1);
+                    animator.SetTrigger("estamparse");
+                    Stunear(2f);
+                }
+                else
+                {
                     SoundMannager.Instance.PlaySFX(playerData.SFX_Caer);
                 }
             }
@@ -122,7 +131,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void DarSalto(bool climbJump = false)
     {
-        if (tired || hasJump) return;  //Sonido de agotado
+        if (tired || hasJump || !canMove) return;  //Sonido de agotado
         //Si el salto se ejecuta en la escalada, es menos potente
         if (climbJump || escalar)   //Si es un salto en escalada o el autojump al llegar a un borde
             currentJumpSpeed = playerData.climbJumpSpeed;
@@ -262,11 +271,16 @@ public class PlayerMovement : MonoBehaviour
         StartCoroutine(Stun(s));
     }
 
+    public Collider2D mainCol, colFricc;
     IEnumerator Stun(float segundos)
     {
+        colFricc.enabled = true;
+        mainCol.enabled = false;
         canMove = false;
         yield return new WaitForSeconds(segundos);
         canMove = true;
+        mainCol.enabled = true;
+        colFricc.enabled = false;
         yield return null;
     }
 }

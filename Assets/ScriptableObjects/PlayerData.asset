@@ -12,15 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6faee2b9516e1d84580689289f6eafe8, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: Assembly-CSharp::PlayerData
+  SFX_Muerte: {fileID: 8300000, guid: 7d665f262def6d64e8e2c43c090ed248, type: 3}
+  SFX_Dmg: {fileID: 8300000, guid: 624fffddb11138649b31cf0ea6499f38, type: 3}
+  lives: 3
   jumpSpeed: 10
   climbJumpSpeed: 8
   coyoteWindow: 0.15
   groundRadius: 0.5
-  fallAnimSpeed: -15
   movSpeed: 5
   wallRadius: 0.5
   climbSpeed: 4
   fallDeathSpeed: -25
+  fallDmgSpeed: -15
   grabStamina: 1
   climbStamina: 3
   jumpStamina: 4
@@ -30,7 +33,6 @@ MonoBehaviour:
   hambreSpeed: 0.1
   maxInitStamina: 20
   maxEnergy: 100
-  SFX_Muerte: {fileID: 8300000, guid: 7d665f262def6d64e8e2c43c090ed248, type: 3}
   SFX_Paso: {fileID: 8300000, guid: 1994d969c77d82e4ba0ad9e9b7ab7f93, type: 3}
   SFX_Salto: {fileID: 8300000, guid: 3635a549b580e0e4c9d5dd0e79462bf2, type: 3}
   SFX_Escalar: {fileID: 8300000, guid: 7c853a5cb3f543743b9d5c5adcf2ba5e, type: 3}
