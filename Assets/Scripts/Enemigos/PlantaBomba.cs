@@ -33,7 +33,7 @@ public class PlantaBomba : MonoBehaviour
                     dir.Normalize();
                     Debug.Log(dir * pushForce);
                     //rbPlayer.linearVelocity = dir*pushForce;
-                    playerMove.Stunear(stunTime);
+                    //playerMove.Stunear(stunTime);
                     rbPlayer.AddForce(dir * pushForce + new Vector2(0, minPushY));
                     SoundMannager.Instance.PlaySFX(detonation);
                     StartCoroutine(ExplosionAnim());

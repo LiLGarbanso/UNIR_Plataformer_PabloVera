@@ -61,9 +61,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Golpear",
+                    "name": "Bomba",
                     "type": "Button",
                     "id": "a2f0894e-27ac-4d22-a033-9081027602ca",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Cuerda",
+                    "type": "Button",
+                    "id": "a151410b-48a2-461f-b47b-e74daa81a7b9",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -320,7 +329,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Golpear",
+                    "action": "Bomba",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "39ce00c6-6d6c-4567-b3e9-8970ffa90f6c",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Cuerda",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

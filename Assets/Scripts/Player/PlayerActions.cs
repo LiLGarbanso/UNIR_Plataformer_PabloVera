@@ -3,30 +3,40 @@ using UnityEngine.InputSystem;
 
 public class PlayerActions : MonoBehaviour
 {
-    public Antorcha antorcha;
-    public Caldero caldero;
-    public Animator playerAnimator;
-    public void Antorcha(InputAction.CallbackContext context)
+    public Bomba bomba;
+    public Cuerda cuerda;
+    public Transform dropPoint, escenario;
+    public int initBombs, currentBombs, initRopes, currentRopes;
+
+    private void Start()
+    {
+        currentBombs = initBombs;
+        currentRopes = initRopes;
+    }
+
+    public void ColocarBomba(InputAction.CallbackContext context)
     {
         if (context.started)
         {
-            antorcha.BotonAntorcha();
+            if(currentBombs > 0)
+            {
+                currentBombs--;
+                Instantiate(bomba, dropPoint.position, Quaternion.identity, escenario);
+            }
         }
     }
 
-    public void Caldero(InputAction.CallbackContext context)
+    public void Cuerda(InputAction.CallbackContext context)
     {
         if (context.started)
         {
-            caldero.StartCooking();
-        }
-    }
-
-    public void Baston(InputAction.CallbackContext context)
-    {
-        if (context.started)
-        {
-            playerAnimator.SetTrigger("golpear");
+            if (currentRopes > 0)
+            {
+                if (cuerda.LanzarCuerda())
+                {
+                    currentRopes--;
+                }
+            }
         }
     }
 }

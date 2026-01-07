@@ -10,8 +10,10 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 movDir;
     private bool isGrounded, wasGrounded, escalar, puedeEscalar, tired, canMove, hasJump;
     private float lastTimeGrounded, lastVerticalVelocity, currentJumpSpeed, lastTimeCanClimb;
-    public float currentStamina, currentEnergy, maxStamina;
+    public float currentStamina, currentEnergy, maxStamina, drag = 0.98f;
     private HasLives liveSystem;
+    private RaycastHit2D[] hits = new RaycastHit2D[1];
+    private ContactFilter2D filter = new ContactFilter2D();
 
     [Header("REFERENCIAS")]
     public LayerMask sueloMask;
@@ -36,6 +38,8 @@ public class PlayerMovement : MonoBehaviour
         canMove = true;
         hasJump = false;
         liveSystem = GetComponent<HasLives>();
+        filter.SetLayerMask(sueloMask);
+        filter.useTriggers = true;
     }
 
     public void ResetPlayer()
@@ -98,7 +102,11 @@ public class PlayerMovement : MonoBehaviour
             if (escalar) CalcularGasoEstamina();
 
         //Comprobación paredes para poder escalar
-        puedeEscalar = Physics2D.Raycast(delante.position, delante.right, playerData.wallRadius, sueloMask);
+        int count = Physics2D.Raycast(delante.position, delante.right, filter, hits, playerData.wallRadius);
+        if (count > 0)
+            puedeEscalar = true;
+        else
+            puedeEscalar = false;
         Debug.DrawRay(delante.position, delante.right, Color.red);
 
         //Si está agotado, no puede escalar
@@ -120,6 +128,8 @@ public class PlayerMovement : MonoBehaviour
 
         if(!isGrounded)
             lastVerticalVelocity = rb2d.linearVelocity.y;   //Guardamos la última velocidad solo si aún estamos en el aire
+
+        rb2d.linearVelocity *= drag;
     }
 
     public void Saltar(InputAction.CallbackContext context)
@@ -266,8 +276,9 @@ public class PlayerMovement : MonoBehaviour
         //gameObject.SetActive(false);
     }
 
-    public void Stunear(float s)
+    public void Stunear(float s, int dmg = 0)
     {
+        liveSystem.TakeDamage(dmg);
         animator.SetTrigger("estamparse");
         StartCoroutine(Stun(s));
     }

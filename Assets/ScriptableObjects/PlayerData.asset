@@ -22,8 +22,8 @@ MonoBehaviour:
   movSpeed: 5
   wallRadius: 0.5
   climbSpeed: 4
-  fallDeathSpeed: -25
-  fallDmgSpeed: -15
+  fallDeathSpeed: -30
+  fallDmgSpeed: -20
   grabStamina: 1
   climbStamina: 3
   jumpStamina: 4
