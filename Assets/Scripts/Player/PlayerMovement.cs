@@ -254,6 +254,7 @@ public class PlayerMovement : MonoBehaviour
     public void Comer(float energia)
     {
         currentEnergy += energia;
+        currentEnergy = Mathf.Clamp(currentEnergy, 0, playerData.maxEnergy);
     }
 
     public void Die()

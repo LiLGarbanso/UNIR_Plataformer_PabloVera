@@ -3,20 +3,30 @@ using UnityEngine.InputSystem;
 
 public class PlayerActions : MonoBehaviour
 {
-    public GameObject antorchaGO;
+    public Antorcha antorcha;
+    public Caldero caldero;
+    public Animator playerAnimator;
     public void Antorcha(InputAction.CallbackContext context)
     {
         if (context.started)
         {
-            if(antorchaGO.activeSelf)
-            {
-                //Sonido apagar antorcha
-                antorchaGO.SetActive(false);
-            }
-            else
-            {
-                antorchaGO.SetActive(true);
-            }
+            antorcha.BotonAntorcha();
+        }
+    }
+
+    public void Caldero(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            caldero.StartCooking();
+        }
+    }
+
+    public void Baston(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            playerAnimator.SetTrigger("golpear");
         }
     }
 }

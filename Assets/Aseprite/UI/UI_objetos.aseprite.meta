@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b64e1009fa9cdcf499e67d961286e08f
+guid: 5d850911b5a09f9439d061171af06747
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -102,7 +102,7 @@ ScriptedImporter:
     generateIndividualEvents: 1
     generateSpriteAtlas: 1
   importFileNodeState: 1
-  platformSettingsDirtyTick: 639031211202413470
+  platformSettingsDirtyTick: 639033262771569620
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -127,9 +127,9 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Envoriment
+  - name: UI_objetos
     originalName: 
-    pivot: {x: 1.1739131, y: -2.5454545}
+    pivot: {x: 0.35789475, y: -0.03508772}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -137,9 +137,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 23
-      height: 11
-    spriteID: cf08cd1bbb16b2241a11b5269f85fcf1
+      width: 95
+      height: 57
+    spriteID: dc87f7e1a6c816f4bb20c103599c37db
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -149,7 +149,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
   spriteSheetImportData:
-  - name: hongo
+  - name: slot
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -158,10 +158,10 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 8
-      width: 6
-      height: 7
-    spriteID: 41f5e3dffe7a2894f98b02d284e08fd2
+      y: 16
+      width: 20
+      height: 20
+    spriteID: d66e0d139a179c34ebeb4b38bce49c22
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -170,7 +170,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: plantaBomba
+  - name: bastonUI
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -178,11 +178,158 @@ ScriptedImporter:
     customData: 
     rect:
       serializedVersion: 2
-      x: 17
+      x: 57
+      y: 21
+      width: 8
+      height: 15
+    spriteID: d0578d956c080cc44b61992d9ebb72b1
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: flechasUI
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 67
+      y: 20
+      width: 19
+      height: 19
+    spriteID: 5c8e1a91277ca7a48b7e0ad9c1f628ab
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: antorchaUI
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 70
+      y: 45
+      width: 13
+      height: 16
+    spriteID: 108d43d4cf6a150449dda5b98366bbf4
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: calderoUI
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 72
       y: 4
-      width: 10
-      height: 10
-    spriteID: cacfb4f6d6ad41e438957767a4b245c9
+      width: 11
+      height: 13
+    spriteID: 5f81ad91f2523ec48a6a00d1dd261060
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: cuerdaUI
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 88
+      y: 23
+      width: 8
+      height: 13
+    spriteID: 33b88a680cfccab44a20d855a699bd6e
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: cuerdaContUI
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 96
+      y: 22
+      width: 3
+      height: 3
+    spriteID: 2c448049c68f0874baf4a4bfab4d4469
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: cargaAntorchaUI
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 71
+      y: 41
+      width: 3
+      height: 3
+    spriteID: 5cd38f8a40f62994cb9ad2125660f0fb
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: muslito
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 8
+      y: 52
+      width: 11
+      height: 11
+    spriteID: d6106463e8bbacc4ebed892208181042
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -195,25 +342,25 @@ ScriptedImporter:
   asepriteLayers:
   - layerIndex: 0
     uuid:
-      value0: 274715603
+      value0: 2268057997
       value1: 0
       value2: 0
       value3: 0
     guid: 0
-    name: Envoriment
+    name: UI_objetos
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Envoriment
+    - name: UI_objetos
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
-        x: 5
-        y: 28
-        width: 55
-        height: 34
-      spriteId: cf08cd1bbb16b2241a11b5269f85fcf1
+        x: 30
+        y: 2
+        width: 95
+        height: 59
+      spriteId: dc87f7e1a6c816f4bb20c103599c37db
     linkedCells: []
     tileCells: []
     tileSetIndex: 0
@@ -247,5 +394,5 @@ ScriptedImporter:
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 64, y: 64}
-  previousTextureSize: {x: 64, y: 64}
+  canvasSize: {x: 128, y: 128}
+  previousTextureSize: {x: 128, y: 128}
