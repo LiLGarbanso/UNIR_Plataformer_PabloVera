@@ -25,6 +25,8 @@ public class EventBus : MonoBehaviour
 
     //Con parámetros (puede ser cualquier otra cosa que GameObject)
     public static event Action<string> OnCambiarActionMap;
+    public static event Action<Transform> OnSetCheckpoint;
+    public static event Action<int> OnSetBombas, OnSetCuerdas;
     public static event Action OnMuerteJugador;
     public static event Action<CinemachineCamera> OnCambiarCamZone;
 
@@ -36,4 +38,7 @@ public class EventBus : MonoBehaviour
     public static void CambiarActionMap(string newMap) => OnCambiarActionMap?.Invoke(newMap);
     public static void MuerteJugador() => OnMuerteJugador?.Invoke();
     public static void ActivarCamZone(CinemachineCamera cam) => OnCambiarCamZone?.Invoke(cam);
+    public static void SetBombas(int bombs) => OnSetBombas?.Invoke(bombs);
+    public static void SetCuerdas(int ropes) => OnSetCuerdas?.Invoke(ropes);
+    public static void SetCheckPoint(Transform point) => OnSetCheckpoint?.Invoke(point);
 }

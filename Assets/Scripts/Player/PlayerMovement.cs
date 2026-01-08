@@ -271,6 +271,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Debug.Log("MUERTE");
         //SoundMannager.Instance.PlaySFX(playerData.SFX_Muerte);
+        gameObject.SetActive(false);
         EventBus.MuerteJugador();
         //ResetPlayer();
         //gameObject.SetActive(false);

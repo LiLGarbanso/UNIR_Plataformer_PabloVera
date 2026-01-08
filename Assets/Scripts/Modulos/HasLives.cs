@@ -23,5 +23,12 @@ public class HasLives : MonoBehaviour
     public void Die()
     {
         SoundMannager.Instance.PlaySFX(entityData.SFX_Muerte);
+        gameObject.SetActive(false);
+        EventBus.MuerteJugador();
+    }
+
+    public void ResetLives()
+    {
+        currentVidas = entityData.lives;
     }
 }
