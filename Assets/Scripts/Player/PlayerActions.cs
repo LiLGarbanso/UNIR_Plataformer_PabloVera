@@ -7,6 +7,7 @@ public class PlayerActions : MonoBehaviour
     public Cuerda cuerda;
     public Transform dropPoint, escenario;
     public int initBombs, currentBombs = 0, initRopes, currentRopes = 0;
+    public HasLives playerHpSystem;
 
     private void OnEnable()
     {
@@ -47,5 +48,11 @@ public class PlayerActions : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void ResetearNivel(InputAction.CallbackContext context)
+    {
+        if (context.started)
+            playerHpSystem.TakeDamage(100);
     }
 }
