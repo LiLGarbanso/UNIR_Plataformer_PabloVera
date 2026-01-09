@@ -4,7 +4,8 @@ using UnityEngine;
 public class Bomba : MonoBehaviour
 {
     public Transform center;
-    [SerializeField] private float pushForce, stunTime, minPushY = 500f;
+    [SerializeField] private float pushForce, stunTime;
+    public int dmgExplosion = 0;
     public AudioClip detonation;
     public ParticleSystem ps;
 
@@ -18,9 +19,10 @@ public class Bomba : MonoBehaviour
                 {                   
                     Vector2 dir = collision.gameObject.transform.position - center.position;
                     dir.Normalize();
-                    //playerMove.Stunear(stunTime,1);
-                    rbPlayer.AddForce(dir * pushForce + new Vector2(0, minPushY));
+                    playerMove.Explotar(stunTime, dmgExplosion);
+                    //rbPlayer.AddForce(dir * pushForce + new Vector2(0, minPushY));
                     //rbPlayer.AddForce(dir * pushForce);
+                    rbPlayer.linearVelocity += dir*pushForce;
                 }
             }
         }

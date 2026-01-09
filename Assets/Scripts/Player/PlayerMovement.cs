@@ -8,19 +8,21 @@ public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rb2d;
     private Vector2 movDir;
-    private bool isGrounded, wasGrounded, escalar, puedeEscalar, tired, canMove, hasJump;
+    private bool isGrounded, wasGrounded, escalar, puedeEscalar, tired, canMove, hasJump, isStunned;
     private float lastTimeGrounded, lastVerticalVelocity, currentJumpSpeed, lastTimeCanClimb;
-    public float currentStamina, currentEnergy, maxStamina, drag = 0.98f;
+    private float currentEnergy, maxStamina, drag = 0.98f;
     private HasLives liveSystem;
     private RaycastHit2D[] hits = new RaycastHit2D[1];
     private ContactFilter2D filter = new ContactFilter2D();
 
     [Header("REFERENCIAS")]
     public LayerMask sueloMask;
-    public Transform pies, delante, autojump;
+    public string sueloMaskStr, cuerdasMask;
+    public Transform pies, delante, autojump, bombDrop;
     public Animator animator;
     public PlayerData playerData;
     public SpriteRenderer spRend;
+    public float currentStamina;
 
     [Header("DEBUG")]
     public bool debug;
@@ -38,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
         canMove = true;
         hasJump = false;
         liveSystem = GetComponent<HasLives>();
-        filter.SetLayerMask(sueloMask);
+        filter.SetLayerMask(LayerMask.GetMask(sueloMaskStr, cuerdasMask));
         filter.useTriggers = true;
     }
 
@@ -47,6 +49,12 @@ public class PlayerMovement : MonoBehaviour
         maxStamina = playerData.maxInitStamina;
         currentStamina = maxStamina;
         currentEnergy = playerData.maxEnergy;
+        canMove = true;
+        isStunned = false;
+        tired = false;
+        escalar = false;
+        hasJump = false;
+        escalar = false;
     }
 
     private void FixedUpdate()
@@ -55,15 +63,17 @@ public class PlayerMovement : MonoBehaviour
         //La estamina máxima depende proporcionalmente a la energía actual
         //La energía va decreciendo por el hambre
         //Cuando la energía llega a 0, el jugador muere
-        currentEnergy -= playerData.hambreSpeed * Time.fixedDeltaTime;
+        //currentEnergy -= playerData.hambreSpeed * Time.fixedDeltaTime;
         if (currentEnergy < 0)
             Die();
 
-        maxStamina = Mathf.Lerp(0f, playerData.maxInitStamina, currentEnergy / playerData.maxEnergy);
+        //maxStamina = Mathf.Lerp(0f, playerData.maxInitStamina, currentEnergy / playerData.maxEnergy);
 
         //Si está escalando, la velocidad vertical es diferente
         if (escalar)
             rb2d.linearVelocity = new Vector2(movDir.x * playerData.movSpeed, movDir.y * playerData.climbSpeed);
+        else if (isStunned)
+            rb2d.linearVelocity = new Vector2(rb2d.linearVelocity.x, rb2d.linearVelocity.y);
         else
             rb2d.linearVelocity = new Vector2(movDir.x * playerData.movSpeed, rb2d.linearVelocity.y);
 
@@ -102,8 +112,10 @@ public class PlayerMovement : MonoBehaviour
             if (escalar) CalcularGasoEstamina();
 
         //Comprobación paredes para poder escalar
-        int count = Physics2D.Raycast(delante.position, delante.right, filter, hits, playerData.wallRadius);
-        if (count > 0)
+        int count1 = Physics2D.Raycast(delante.position, delante.right, filter, hits, playerData.wallRadius);
+        int count2 = Physics2D.Raycast(autojump.position, autojump.right, filter, hits, playerData.wallRadius);
+
+        if (count1 > 0)
             puedeEscalar = true;
         else
             puedeEscalar = false;
@@ -115,8 +127,7 @@ public class PlayerMovement : MonoBehaviour
         Debug.DrawRay(autojump.position, autojump.right, Color.green);
         if (!puedeEscalar)
             escalar = false;
-        //Si está escalando y va a llegar al borde, se le da un último impulso al jugador
-        else if (!Physics2D.Raycast(autojump.position, autojump.right, playerData.wallRadius, sueloMask) && escalar)
+        else if (count2 == 0 && escalar)    //Si está escalando y va a llegar al borde, se le da un último impulso al jugador
         {
             DarSalto(true);
         }
@@ -191,19 +202,17 @@ public class PlayerMovement : MonoBehaviour
 
             if (movDir.x < 0f)
             {
-                delante.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
-                autojump.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
-                //sprRendHead.flipX = true;
-                //posicionesGOs.localScale = Vector3.one;
+                delante.localRotation = Quaternion.Euler(0f, 180f, 0f);
+                autojump.localRotation = Quaternion.Euler(0f, 180f, 0f);
+                bombDrop.localScale = new Vector3(-1, 1, 1);
                 spRend.flipX = true;
             }
 
             if (movDir.x > 0f)
             {
-                delante.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
-                autojump.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
-                //sprRendHead.flipX = false;
-                //posicionesGOs.localScale = new Vector3(-1, 1, 1);
+                delante.localRotation = Quaternion.Euler(0f, 0f, 0f);
+                autojump.localRotation = Quaternion.Euler(0f, 0f, 0f);
+                bombDrop.localScale = Vector3.one;
                 spRend.flipX = false;
             }
         }
@@ -277,9 +286,26 @@ public class PlayerMovement : MonoBehaviour
         //gameObject.SetActive(false);
     }
 
+    public void Explotar(float s, int dmg = 0)
+    {
+        liveSystem.TakeDamage(dmg);
+
+        //animación
+        StartCoroutine(OndaExpansiva(s));
+    }
+
+    IEnumerator OndaExpansiva(float segundos)
+    {
+        isStunned = true;
+        yield return new WaitForSeconds(segundos);
+        isStunned = false;
+        yield return null;
+    }
+
     public void Stunear(float s, int dmg = 0)
     {
         liveSystem.TakeDamage(dmg);
+        isStunned = true;
         animator.SetTrigger("estamparse");
         StartCoroutine(Stun(s));
     }
@@ -289,9 +315,10 @@ public class PlayerMovement : MonoBehaviour
     {
         colFricc.enabled = true;
         mainCol.enabled = false;
-        canMove = false;
+        //canMove = false;
         yield return new WaitForSeconds(segundos);
-        canMove = true;
+        //canMove = true;
+        isStunned = false;
         mainCol.enabled = true;
         colFricc.enabled = false;
         yield return null;

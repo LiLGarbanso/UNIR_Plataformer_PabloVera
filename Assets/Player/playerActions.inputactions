@@ -34,24 +34,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Antorcha",
-                    "type": "Button",
-                    "id": "39664f13-36ed-4def-99af-66f222dbb075",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Caldero",
-                    "type": "Button",
-                    "id": "788587bc-f223-44b9-b7a1-7067a6d50d61",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Interact",
                     "type": "Button",
                     "id": "d1613d3a-b97d-41d0-9d6d-f184f1164307",
@@ -262,50 +244,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Escalar",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "acbcd37e-96c0-4d65-8fec-3e9a6d821949",
-                    "path": "<Gamepad>/dpad/up",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Antorcha",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "849e7821-7385-4eaa-a5b9-fabd4a63121e",
-                    "path": "<Keyboard>/1",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Antorcha",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "e302a317-be96-454e-b684-4863be42323f",
-                    "path": "<Gamepad>/dpad/down",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Caldero",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "56cbf683-de39-4f6a-bef0-9d2e9adaef88",
-                    "path": "<Keyboard>/4",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Caldero",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

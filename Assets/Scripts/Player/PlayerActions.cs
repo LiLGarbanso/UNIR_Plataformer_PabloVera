@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerActions : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class PlayerActions : MonoBehaviour
     public Transform dropPoint, escenario;
     public int initBombs, currentBombs = 0, initRopes, currentRopes = 0;
     public HasLives playerHpSystem;
+    public Text txtCuerdas, txtBombas;
 
     private void OnEnable()
     {
@@ -21,8 +23,16 @@ public class PlayerActions : MonoBehaviour
         EventBus.OnSetCuerdas -= SetRopes;
     }
 
-    public void SetBombs(int b) { currentBombs = b; }
-    public void SetRopes(int r) { currentRopes = r; }
+    public void SetBombs(int b)
+    {
+        currentBombs = b;
+        UpdateUI();
+    }
+    public void SetRopes(int r)
+    {
+        currentRopes = r;
+        UpdateUI();
+    }
 
     public void ColocarBomba(InputAction.CallbackContext context)
     {
@@ -32,6 +42,7 @@ public class PlayerActions : MonoBehaviour
             {
                 currentBombs--;
                 Instantiate(bomba, dropPoint.position, Quaternion.identity, escenario);
+                UpdateUI();
             }
         }
     }
@@ -45,6 +56,7 @@ public class PlayerActions : MonoBehaviour
                 if (cuerda.LanzarCuerda())
                 {
                     currentRopes--;
+                    UpdateUI();
                 }
             }
         }
@@ -54,5 +66,11 @@ public class PlayerActions : MonoBehaviour
     {
         if (context.started)
             playerHpSystem.TakeDamage(100);
+    }
+
+    public void UpdateUI()
+    {
+        txtBombas.text = currentBombs.ToString();
+        txtCuerdas.text = currentRopes.ToString();
     }
 }
