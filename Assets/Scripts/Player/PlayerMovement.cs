@@ -313,14 +313,14 @@ public class PlayerMovement : MonoBehaviour
     public Collider2D mainCol, colFricc;
     IEnumerator Stun(float segundos)
     {
-        colFricc.enabled = true;
-        mainCol.enabled = false;
+        //colFricc.enabled = true;
+        //mainCol.enabled = false;
         //canMove = false;
         yield return new WaitForSeconds(segundos);
         //canMove = true;
         isStunned = false;
-        mainCol.enabled = true;
-        colFricc.enabled = false;
+        //mainCol.enabled = true;
+        //colFricc.enabled = false;
         yield return null;
     }
 }

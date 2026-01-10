@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5847657241984856717}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: center
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,12 +40,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7737610508679579645}
-  - component: {fileID: 8082642136843097596}
   - component: {fileID: 8016538868623790619}
-  - component: {fileID: 5725802797167331250}
   - component: {fileID: 6884133586768344294}
   - component: {fileID: 2247241156124300395}
   - component: {fileID: 8957388503459904791}
+  - component: {fileID: 760638276572190934}
+  - component: {fileID: 3087952669327518957}
   m_Layer: 6
   m_Name: bomba
   m_TagString: Untagged
@@ -69,24 +69,6 @@ Transform:
   - {fileID: 5847657241984856717}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8082642136843097596
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7436433356086169874}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03a4de2ba95039a4b9f92e262864b411, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Bomba
-  center: {fileID: 5847657241984856717}
-  pushForce: 20
-  stunTime: 1
-  dmgExplosion: 0
-  detonation: {fileID: 8300000, guid: b65e5bcf9aa05694db64cc674be04177, type: 3}
-  ps: {fileID: 0}
 --- !u!212 &8016538868623790619
 SpriteRenderer:
   serializedVersion: 2
@@ -146,42 +128,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!58 &5725802797167331250
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7436433356086169874}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Radius: 4
 --- !u!50 &6884133586768344294
 Rigidbody2D:
   serializedVersion: 5
@@ -277,3 +223,57 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.38, y: 1.21}
   m_EdgeRadius: 0
+--- !u!114 &760638276572190934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7436433356086169874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03a4de2ba95039a4b9f92e262864b411, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Bomba
+  center: {fileID: 5847657241984856717}
+  pushForce: 20
+  stunTime: 1
+  dmgExplosion: 0
+  detonation: {fileID: 8300000, guid: b65e5bcf9aa05694db64cc674be04177, type: 3}
+  ps: {fileID: 0}
+--- !u!58 &3087952669327518957
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7436433356086169874}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 4

@@ -25,6 +25,18 @@ public class Bomba : MonoBehaviour
                     rbPlayer.linearVelocity += dir*pushForce;
                 }
             }
+
+            if (collision.gameObject.CompareTag("Caja"))
+            {
+                if(collision.gameObject.TryGetComponent<Rigidbody2D>(out Rigidbody2D rbCaja))
+                {
+                    Vector2 dir = collision.gameObject.transform.position - center.position;
+                    dir.Normalize();
+                    //rbPlayer.AddForce(dir * pushForce + new Vector2(0, minPushY));
+                    //rbCaja.AddForce(dir * pushForce);
+                    rbCaja.linearVelocity += dir * pushForce;
+                }
+            }
         }
     }
 
