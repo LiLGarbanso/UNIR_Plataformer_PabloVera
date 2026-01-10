@@ -48,7 +48,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelTarget
   level: {fileID: 4154643606632798573}
-  light2d: {fileID: 4350126599525622539}
 --- !u!58 &5852673483147242638
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -245,7 +244,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Level
   bombas: 1
   cuerdas: 1
-  checkPoint: {fileID: 8460259493870064016}
+  startPos: {fileID: 8460259493870064016}
+  levelTarget: {fileID: 5042829198713555716}
+  cajas: []
 --- !u!61 &7536328963574014266
 BoxCollider2D:
   m_ObjectHideFlags: 0

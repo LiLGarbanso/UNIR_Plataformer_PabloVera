@@ -65,7 +65,11 @@ public class PlayerActions : MonoBehaviour
     public void ResetearNivel(InputAction.CallbackContext context)
     {
         if (context.started)
-            playerHpSystem.TakeDamage(100);
+        {
+            EventBus.ResetearNivell();
+            cuerda.LimpiarCuedas();
+        }
+            
     }
 
     public void UpdateUI()

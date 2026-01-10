@@ -21,7 +21,7 @@ public class LevelTarget : MonoBehaviour
             {
                 //Notificar que es el último nivel completado
                 hasBeenReached = true;
-                EventBus.SetCheckPoint(transform);
+                //EventBus.SetCheckPoint(transform);
                 level.FinishLevel();
                 //light2d.enabled = true;
             }

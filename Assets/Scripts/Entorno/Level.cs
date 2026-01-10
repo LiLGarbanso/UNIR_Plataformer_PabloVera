@@ -5,8 +5,8 @@ public class Level : MonoBehaviour
 {
     private bool levelFinished;
     public int bombas, cuerdas;
-    public Transform checkPoint;
-    //public List<GameObject> levelProps;
+    public Transform startPos, levelTarget;
+    public List<Caja> cajas;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -14,8 +14,10 @@ public class Level : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("Player") && !levelFinished)
             {
+                //SetRecursosIniciales();
+                //EventBus.SetCheckPoint(startPos);
+                EventBus.IniciarNivel(this);
                 SetRecursosIniciales();
-                EventBus.SetCheckPoint(checkPoint);
             }
         }
     }
@@ -28,6 +30,8 @@ public class Level : MonoBehaviour
             {
                 EventBus.SetBombas(0);
                 EventBus.SetCuerdas(0);
+                foreach (Caja c in cajas)
+                    c.ResetCaja();
             }
         }
     }
@@ -39,4 +43,13 @@ public class Level : MonoBehaviour
     }
 
     public void FinishLevel() { levelFinished = true; }
+    public bool GetLevelStatus() { return levelFinished; }
+
+    public void ResetLevel()
+    {
+        foreach(Caja c in cajas)
+            c.ResetCaja();
+
+        SetRecursosIniciales();
+    }
 }

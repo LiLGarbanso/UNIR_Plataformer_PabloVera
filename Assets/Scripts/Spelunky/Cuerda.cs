@@ -12,11 +12,13 @@ public class Cuerda : MonoBehaviour
     private void OnEnable()
     {
         EventBus.OnMuerteJugador += LimpiarCuedas;
+        EventBus.OnStartLevel -= LimpiarCuedas;
     }
 
     private void OnDisable()
     {
         EventBus.OnMuerteJugador -= LimpiarCuedas;
+        EventBus.OnStartLevel -= LimpiarCuedas;
     }
 
     public bool LanzarCuerda()
@@ -33,6 +35,14 @@ public class Cuerda : MonoBehaviour
     }
 
     public void LimpiarCuedas()
+    {
+        foreach (GameObject go in cuerdasActivas)
+        {
+            Destroy(go);
+        }
+        cuerdasActivas.Clear();
+    }
+    public void LimpiarCuedas(Level l)
     {
         foreach (GameObject go in cuerdasActivas)
         {
