@@ -4960,15 +4960,47 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2529993276725881217, guid: c06d3ae63269beb4d8707ff9fcb4855b, type: 3}
       propertyPath: m_Color.b
-      value: 0.8941177
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2529993276725881217, guid: c06d3ae63269beb4d8707ff9fcb4855b, type: 3}
       propertyPath: m_Color.g
-      value: 0.80392164
+      value: 0.827451
       objectReference: {fileID: 0}
     - target: {fileID: 2529993276725881217, guid: c06d3ae63269beb4d8707ff9fcb4855b, type: 3}
       propertyPath: m_Color.r
-      value: 0.37254903
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2529993276725881217, guid: c06d3ae63269beb4d8707ff9fcb4855b, type: 3}
+      propertyPath: m_Intensity
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2529993276725881217, guid: c06d3ae63269beb4d8707ff9fcb4855b, type: 3}
+      propertyPath: m_LightType
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2529993276725881217, guid: c06d3ae63269beb4d8707ff9fcb4855b, type: 3}
+      propertyPath: m_FalloffIntensity
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2529993276725881217, guid: c06d3ae63269beb4d8707ff9fcb4855b, type: 3}
+      propertyPath: m_PointLightInnerRadius
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2529993276725881217, guid: c06d3ae63269beb4d8707ff9fcb4855b, type: 3}
+      propertyPath: m_PointLightOuterRadius
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2529993276725881217, guid: c06d3ae63269beb4d8707ff9fcb4855b, type: 3}
+      propertyPath: m_LocalBounds.m_Center.y
+      value: -0.00000011920929
+      objectReference: {fileID: 0}
+    - target: {fileID: 2529993276725881217, guid: c06d3ae63269beb4d8707ff9fcb4855b, type: 3}
+      propertyPath: m_LocalBounds.m_Extent.x
+      value: 0.9985302
+      objectReference: {fileID: 0}
+    - target: {fileID: 2529993276725881217, guid: c06d3ae63269beb4d8707ff9fcb4855b, type: 3}
+      propertyPath: m_LocalBounds.m_Extent.y
+      value: 0.99853027
       objectReference: {fileID: 0}
     - target: {fileID: 4963652899045298103, guid: c06d3ae63269beb4d8707ff9fcb4855b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5008,6 +5040,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4963652899045298103, guid: c06d3ae63269beb4d8707ff9fcb4855b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6407041180438404572, guid: c06d3ae63269beb4d8707ff9fcb4855b, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7405000980393436508, guid: c06d3ae63269beb4d8707ff9fcb4855b, type: 3}
