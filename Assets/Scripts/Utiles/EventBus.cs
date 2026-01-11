@@ -28,7 +28,7 @@ public class EventBus : MonoBehaviour
     public static event Action<Transform> OnSetCheckpoint;
     public static event Action<int> OnSetBombas, OnSetCuerdas;
     public static event Action<Level> OnStartLevel;
-    public static event Action OnMuerteJugador, OnResetLevel;
+    public static event Action OnMuerteJugador, OnResetLevel, OnMusicFinished;
     public static event Action<CinemachineCamera> OnCambiarCamZone;
 
     //----------Funciones para invocar los eventos----------//
@@ -44,4 +44,5 @@ public class EventBus : MonoBehaviour
     public static void SetCuerdas(int ropes) => OnSetCuerdas?.Invoke(ropes);
     public static void SetCheckPoint(Transform point) => OnSetCheckpoint?.Invoke(point);
     public static void IniciarNivel(Level lvl) => OnStartLevel?.Invoke(lvl);
+    public static void SiguienteCancion() => OnMusicFinished?.Invoke();
 }

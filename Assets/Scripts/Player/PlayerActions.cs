@@ -6,11 +6,18 @@ public class PlayerActions : MonoBehaviour
 {
     public Bomba bomba;
     public Cuerda cuerda;
-    public Transform dropPoint, escenario;
+    public Transform dropPoint, escenario, delante;
     public int initBombs, currentBombs = 0, initRopes, currentRopes = 0;
     public HasLives playerHpSystem;
     public Text txtCuerdas, txtBombas;
+    private ContactFilter2D filter = new ContactFilter2D();
+    private Collider2D[] hits = new Collider2D[1];
+    public LayerMask suelo;
 
+    private void Awake()
+    {
+        filter.SetLayerMask(suelo);
+    }
     private void OnEnable()
     {
         EventBus.OnSetBombas += SetBombs;
@@ -38,7 +45,8 @@ public class PlayerActions : MonoBehaviour
     {
         if (context.started)
         {
-            if(currentBombs > 0)
+            int count = Physics2D.OverlapCircle(dropPoint.position, 0.5f, filter, hits);
+            if (currentBombs > 0 && count <= 0)
             {
                 currentBombs--;
                 Instantiate(bomba, dropPoint.position, Quaternion.identity, escenario);

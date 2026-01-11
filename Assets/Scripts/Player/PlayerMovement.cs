@@ -235,7 +235,6 @@ public class PlayerMovement : MonoBehaviour
                 animator.SetBool("isClimbing", true);
                 hasJump = false;
             }
-                
         }
     }
 
@@ -315,9 +314,9 @@ public class PlayerMovement : MonoBehaviour
     {
         //colFricc.enabled = true;
         //mainCol.enabled = false;
-        //canMove = false;
+        canMove = false;
         yield return new WaitForSeconds(segundos);
-        //canMove = true;
+        canMove = true;
         isStunned = false;
         //mainCol.enabled = true;
         //colFricc.enabled = false;

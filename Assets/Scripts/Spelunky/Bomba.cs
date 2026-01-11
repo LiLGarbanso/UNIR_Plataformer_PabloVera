@@ -43,6 +43,7 @@ public class Bomba : MonoBehaviour
 public void PlayExplosion()
     {
         SoundMannager.Instance.PlaySFX(detonation);
+        ps.Play();
     }
 
     public void Desactivar()

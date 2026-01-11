@@ -22,14 +22,14 @@ MonoBehaviour:
   movSpeed: 5
   wallRadius: 0.5
   climbSpeed: 4
-  fallDeathSpeed: -30
-  fallDmgSpeed: -20
+  fallDeathSpeed: -20
+  fallDmgSpeed: -15
   grabStamina: 1
   climbStamina: 3
   jumpStamina: 4
-  restStaminaSpeed: 5
+  restStaminaSpeed: 10
   umbralRecuperacion: 10
-  climbCoyoteWindow: 0.2
+  climbCoyoteWindow: 1
   hambreSpeed: 0.1
   maxInitStamina: 20
   maxEnergy: 100

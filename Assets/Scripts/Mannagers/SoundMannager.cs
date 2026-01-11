@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class SoundMannager : MonoBehaviour
@@ -51,6 +52,11 @@ public class SoundMannager : MonoBehaviour
         sfxSource.pitch = 1f + Random.Range(-pitchRandomness, pitchRandomness);
         sfxSource.PlayOneShot(clip, volume * sfxVolume);
     }
+    public void PlaySFX_Pitch(AudioClip clip, float volume = 1f, float ptch = 1f)
+    {
+        sfxSource.pitch = ptch;
+        sfxSource.PlayOneShot(clip, volume * sfxVolume);
+    }
 
     public void PlayAmbience(AudioClip clip, bool loop = true)
     {
@@ -80,5 +86,19 @@ public class SoundMannager : MonoBehaviour
         ambienceSource.Stop();
         musicSource.Stop();
         sfxSource.Stop();
+    }
+
+    public void ReproducirSiguienteCancion(AudioClip clip)
+    {
+        StartCoroutine(WaitUntilMusicEnds(clip));
+    }
+
+    IEnumerator WaitUntilMusicEnds(AudioClip clip)
+    {
+        musicSource.PlayOneShot(clip);
+        yield return new WaitWhile(() => musicSource.isPlaying);
+        yield return new WaitForSeconds(20f);
+        EventBus.SiguienteCancion();
+        yield return null;
     }
 }

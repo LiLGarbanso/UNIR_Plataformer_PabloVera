@@ -8,6 +8,7 @@ public class Cuerda : MonoBehaviour
     public GameObject prefabCuerda;
     public Transform escenario, player;
     private List<GameObject> cuerdasActivas = new List<GameObject>();
+    public AudioClip lanzar, atar;
 
     private void OnEnable()
     {
@@ -23,11 +24,13 @@ public class Cuerda : MonoBehaviour
 
     public bool LanzarCuerda()
     {
+        SoundMannager.Instance.PlaySFX(lanzar,0.5f);
         RaycastHit2D hit = Physics2D.Raycast(player.position, Vector2.up, ropeRange, sueloMask);
         Debug.DrawRay(transform.position, Vector2.up, Color.brown, 3f);
         if (hit.rigidbody != null)
         {
             cuerdasActivas.Add(Instantiate(prefabCuerda, hit.point, Quaternion.identity, escenario));
+            SoundMannager.Instance.PlaySFX(atar, 0.5f);
             return true;
         }
         else
