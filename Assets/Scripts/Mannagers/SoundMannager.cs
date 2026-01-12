@@ -19,6 +19,9 @@ public class SoundMannager : MonoBehaviour
     public AudioClip musicaAmbiente;
     public AudioClip musicaVictoria, musicaGameOver;
 
+    private Coroutine cSound;
+    public float musicDelay;
+
     private void Awake()
     {
         if (Instance != null) { Destroy(gameObject); return; }
@@ -54,8 +57,7 @@ public class SoundMannager : MonoBehaviour
     }
     public void PlaySFX_Pitch(AudioClip clip, float volume = 1f, float ptch = 1f)
     {
-        sfxSource.pitch = ptch;
-        sfxSource.PlayOneShot(clip, volume * sfxVolume);
+        ambienceSource.PlayOneShot(clip, volume * sfxVolume);
     }
 
     public void PlayAmbience(AudioClip clip, bool loop = true)
@@ -83,6 +85,7 @@ public class SoundMannager : MonoBehaviour
 
     public void PararSonido()
     {
+        StopAllCoroutines();
         ambienceSource.Stop();
         musicSource.Stop();
         sfxSource.Stop();
@@ -90,15 +93,20 @@ public class SoundMannager : MonoBehaviour
 
     public void ReproducirSiguienteCancion(AudioClip clip)
     {
-        StartCoroutine(WaitUntilMusicEnds(clip));
+        if (cSound != null)
+            StopCoroutine(cSound);
+
+        cSound = StartCoroutine(WaitUntilMusicEnds(clip));
     }
 
     IEnumerator WaitUntilMusicEnds(AudioClip clip)
     {
-        musicSource.PlayOneShot(clip);
+        musicSource.clip = clip;
+        musicSource.Play();
+
         yield return new WaitWhile(() => musicSource.isPlaying);
-        yield return new WaitForSeconds(20f);
+        yield return new WaitForSeconds(musicDelay);
+
         EventBus.SiguienteCancion();
-        yield return null;
     }
 }

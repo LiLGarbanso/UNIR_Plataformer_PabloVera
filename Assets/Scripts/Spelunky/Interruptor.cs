@@ -3,6 +3,7 @@ using UnityEngine;
 public class Interruptor : MonoBehaviour
 {
     public GameObject mecanismo;
+    public AudioClip pulsar;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -17,6 +18,7 @@ public class Interruptor : MonoBehaviour
         if (collision != null)
         {
             mecanismo.SetActive(true);
+            SoundMannager.Instance.PlaySFX(pulsar);
         }
     }
 }

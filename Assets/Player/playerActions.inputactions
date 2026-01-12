@@ -228,7 +228,7 @@
                 {
                     "name": "",
                     "id": "40da0b41-11cf-48aa-a05f-82806f463d10",
-                    "path": "<Mouse>/rightButton",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -282,8 +282,30 @@
                 },
                 {
                     "name": "",
+                    "id": "3c7149b7-c956-4558-a9f7-26a564343316",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Bomba",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "39ce00c6-6d6c-4567-b3e9-8970ffa90f6c",
                     "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Cuerda",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ff61928c-545c-43c8-b038-35e14e39f471",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -299,6 +321,56 @@
                     "processors": "",
                     "groups": "",
                     "action": "ResetNivel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e41399af-b27f-4177-8a11-5757f36411d7",
+                    "path": "<Keyboard>/alt",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ResetNivel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "UI",
+            "id": "d2c75106-90fa-4d20-99c3-0b7ded9c7b3d",
+            "actions": [
+                {
+                    "name": "Start",
+                    "type": "Button",
+                    "id": "b84cdf11-12e4-46a5-a8fc-75f312418d7d",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "2e7528c0-2d51-4378-91f2-318331565e1b",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Start",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c2bc0f47-4d7a-45ed-904b-a0ae91b0cc62",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Start",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

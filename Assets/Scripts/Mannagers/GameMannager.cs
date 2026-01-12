@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameMannager : MonoBehaviour
 {
@@ -8,11 +9,12 @@ public class GameMannager : MonoBehaviour
     public HasLives playerLives;
     public Level currentLevel;
     public List<AudioClip> musica, finishers;
+    public PlayerInput playerInput;
+    public GameObject playerUI, playerGO;
 
     private void OnEnable()
     {
         EventBus.OnMuerteJugador += MuerteJugador;
-        EventBus.OnSetCheckpoint += ActualizarCheckpoint;
         EventBus.OnResetLevel += ReiniciarNivel;
         EventBus.OnStartLevel += StartLevel;
         EventBus.OnMusicFinished += NextSong;
@@ -21,7 +23,6 @@ public class GameMannager : MonoBehaviour
     private void OnDisable()
     {
         EventBus.OnMuerteJugador -= MuerteJugador;
-        EventBus.OnSetCheckpoint -= ActualizarCheckpoint;
         EventBus.OnResetLevel -= ReiniciarNivel;
         EventBus.OnStartLevel -= StartLevel;
         EventBus.OnMusicFinished -= NextSong;
@@ -29,15 +30,21 @@ public class GameMannager : MonoBehaviour
 
     private void Start()
     {
-        player.position = lastChekPoint.position;
+        playerInput.actions.FindActionMap("UI").Enable();
         SoundMannager.Instance.Inicio();
         currentSong = -1;
-        NextSong();
     }
 
-    public void ActualizarCheckpoint(Transform point)
+    public void IniciarJuego()
     {
-        lastChekPoint = point;
+        playerUI.SetActive(true);
+        playerGO.SetActive(true);
+        Camera.main.orthographicSize = 18.45f;
+        playerInput.actions.FindActionMap("UI").Disable();
+        playerInput.actions.FindActionMap("Player").Enable();
+        player.position = lastChekPoint.position;
+        
+        NextSong();
     }
 
     public void MuerteJugador()
@@ -73,7 +80,8 @@ public class GameMannager : MonoBehaviour
     public void NextSong()
     {
         currentSong++;
-        if (currentSong == musica.Count -1) currentSong = 0;
+        if (currentSong >= musica.Count)
+            currentSong = 0;
         SoundMannager.Instance.ReproducirSiguienteCancion(musica[currentSong]);
     }
 }

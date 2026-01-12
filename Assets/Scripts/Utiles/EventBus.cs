@@ -24,8 +24,6 @@ public class EventBus : MonoBehaviour
     //--------Declaración de eventos--------//
 
     //Con parámetros (puede ser cualquier otra cosa que GameObject)
-    public static event Action<string> OnCambiarActionMap;
-    public static event Action<Transform> OnSetCheckpoint;
     public static event Action<int> OnSetBombas, OnSetCuerdas;
     public static event Action<Level> OnStartLevel;
     public static event Action OnMuerteJugador, OnResetLevel, OnMusicFinished;
@@ -36,13 +34,11 @@ public class EventBus : MonoBehaviour
     //pero las subscripciones si que se hacen al propio evento 
 
     //Llamadas a eventos con parámetros (puede ser cualquier otra cosa que GameObject)
-    public static void CambiarActionMap(string newMap) => OnCambiarActionMap?.Invoke(newMap);
     public static void MuerteJugador() => OnMuerteJugador?.Invoke();
     public static void ResetearNivell() => OnResetLevel?.Invoke();
     public static void ActivarCamZone(CinemachineCamera cam) => OnCambiarCamZone?.Invoke(cam);
     public static void SetBombas(int bombs) => OnSetBombas?.Invoke(bombs);
     public static void SetCuerdas(int ropes) => OnSetCuerdas?.Invoke(ropes);
-    public static void SetCheckPoint(Transform point) => OnSetCheckpoint?.Invoke(point);
     public static void IniciarNivel(Level lvl) => OnStartLevel?.Invoke(lvl);
     public static void SiguienteCancion() => OnMusicFinished?.Invoke();
 }
