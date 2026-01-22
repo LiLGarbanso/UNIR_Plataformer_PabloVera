@@ -61,9 +61,6 @@ public class GameMannager : MonoBehaviour
 
     public void ReiniciarNivel()
     {
-        playerMovement.ResetPlayer();
-        playerLives.ResetLives();
-        player.gameObject.SetActive(true);
 
         if (!currentLevel.GetLevelStatus())
         {
@@ -74,6 +71,10 @@ public class GameMannager : MonoBehaviour
         {
             player.position = currentLevel.levelTarget.position;
         }
+
+        playerMovement.ResetPlayer();
+        playerLives.ResetLives();
+        player.gameObject.SetActive(true);
     }
 
     private int currentSong;

@@ -7,6 +7,12 @@ public class Level : MonoBehaviour
     public int bombas, cuerdas;
     public Transform startPos, levelTarget;
     public List<Caja> cajas;
+    public GameObject luzCheckPoint;
+
+    private void Awake()
+    {
+        luzCheckPoint.SetActive(false);
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -18,6 +24,7 @@ public class Level : MonoBehaviour
                 //EventBus.SetCheckPoint(startPos);
                 EventBus.IniciarNivel(this);
                 SetRecursosIniciales();
+                luzCheckPoint.SetActive(true);
             }
         }
     }

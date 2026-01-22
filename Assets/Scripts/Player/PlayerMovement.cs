@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("REFERENCIAS")]
     public LayerMask sueloMask;
-    public string sueloMaskStr, cuerdasMask;
+    public string sueloMaskStr, cuerdasMask, cajasMask;
     public Transform pies, delante, autojump, bombDrop;
     public Animator animator;
     public PlayerData playerData;
@@ -40,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
         canMove = true;
         hasJump = false;
         liveSystem = GetComponent<HasLives>();
-        filter.SetLayerMask(LayerMask.GetMask(sueloMaskStr, cuerdasMask));
+        filter.SetLayerMask(LayerMask.GetMask(sueloMaskStr, cuerdasMask, cajasMask));
         filter.useTriggers = true;
     }
 
@@ -55,6 +55,7 @@ public class PlayerMovement : MonoBehaviour
         escalar = false;
         hasJump = false;
         escalar = false;
+        rb2d.linearVelocity = Vector2.zero;
     }
 
     private void FixedUpdate()
@@ -226,16 +227,22 @@ public class PlayerMovement : MonoBehaviour
 
     public void Escalar(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (puedeEscalar && !tired)
         {
-            float climbDelay = Time.time - lastTimeCanClimb;
-            if (puedeEscalar || climbDelay < playerData.climbCoyoteWindow)
-            {
-                escalar = true;
-                animator.SetBool("isClimbing", true);
-                hasJump = false;
-            }
+            escalar = true;
+            animator.SetBool("isClimbing", true);
+            hasJump = false;
         }
+        //if (context.performed)
+        //{
+        //    float climbDelay = Time.time - lastTimeCanClimb;
+        //    if (puedeEscalar || climbDelay < playerData.climbCoyoteWindow)
+        //    {
+        //        escalar = true;
+        //        animator.SetBool("isClimbing", true);
+        //        hasJump = false;
+        //    }
+        //}
     }
 
     public void CalcularGasoEstamina()

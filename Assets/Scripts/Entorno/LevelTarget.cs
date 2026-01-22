@@ -5,12 +5,12 @@ public class LevelTarget : MonoBehaviour
 {
     private bool hasBeenReached;
     public Level level;
-    //public Light2D light2d;
+    public GameObject luz;
 
     private void Awake()
     {
         hasBeenReached = false;
-        //light2d.enabled = false;
+        luz.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -23,7 +23,7 @@ public class LevelTarget : MonoBehaviour
                 hasBeenReached = true;
                 //EventBus.SetCheckPoint(transform);
                 level.FinishLevel();
-                //light2d.enabled = true;
+                luz.SetActive(true);
             }
         }
     }

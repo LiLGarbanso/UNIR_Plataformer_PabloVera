@@ -4,15 +4,17 @@ using UnityEngine.UI;
 
 public class PlayerActions : MonoBehaviour
 {
-    public Bomba bomba;
+    public BombHandler bombhandler;
     public Cuerda cuerda;
     public Transform dropPoint, escenario, delante;
-    public int initBombs, currentBombs = 0, initRopes, currentRopes = 0;
+    private int currentBombs = 0, currentRopes = 0;
     public HasLives playerHpSystem;
     public Text txtCuerdas, txtBombas;
     private ContactFilter2D filter = new ContactFilter2D();
     private Collider2D[] hits = new Collider2D[1];
     public LayerMask suelo;
+    public Animator playerAnimator;
+    public AudioClip noBombs, noROpes;
 
     private void Awake()
     {
@@ -49,8 +51,12 @@ public class PlayerActions : MonoBehaviour
             if (currentBombs > 0 && count <= 0)
             {
                 currentBombs--;
-                Instantiate(bomba, dropPoint.position, Quaternion.identity, escenario);
+                bombhandler.ColocarBomba();
                 UpdateUI();
+            }
+            else
+            {
+                SoundMannager.Instance.PlaySFX(noBombs);
             }
         }
     }
@@ -61,11 +67,16 @@ public class PlayerActions : MonoBehaviour
         {
             if (currentRopes > 0)
             {
+                playerAnimator.SetTrigger("cuerda");
                 if (cuerda.LanzarCuerda())
                 {
                     currentRopes--;
                     UpdateUI();
                 }
+            }
+            else
+            {
+                SoundMannager.Instance.PlaySFX(noROpes);
             }
         }
     }
@@ -76,6 +87,7 @@ public class PlayerActions : MonoBehaviour
         {
             EventBus.ResetearNivell();
             cuerda.LimpiarCuedas();
+            bombhandler.LimpiarBombas();
         }
             
     }
